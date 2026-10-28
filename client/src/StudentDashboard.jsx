@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./StudentDashboard.css";
 
-const API_URL = "http://localhost:5000";
+const API_URL = "https://studylens-ai-tx6o.onrender.com";
 
 const subjects = [
   { name: "Physics", icon: "⚡", color: "#e7efff", accent: "#3b82f6" },

@@ -23,7 +23,7 @@ function Register({ onLoginClick, onRegisterSuccess }) {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/register", {
+      fetch("https://studylens-ai-tx6o.onrender.com/api/register", ... {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

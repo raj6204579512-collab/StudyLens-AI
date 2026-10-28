@@ -381,18 +381,23 @@ Return ONLY valid JSON:
 });
 
 async function startServer() {
+  const PORT = process.env.PORT || 5000;
+
+  // 1. Pehle Port start hoga taaki Render turant LIVE ho jaye
+  app.listen(PORT, () => {
+    console.log(`StudyLens AI server running on port ${PORT}`);
+  });
+
+  // 2. Fir MongoDB connect hoga bina crash kiye
   try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("MongoDB connected successfully!");
-
-    const PORT = process.env.PORT || 5000;
-
-    app.listen(PORT, () => {
-      console.log(`StudyLens AI server running on port ${PORT}`);
-    });
+    if (process.env.MONGO_URI) {
+      await mongoose.connect(process.env.MONGO_URI);
+      console.log("MongoDB connected successfully!");
+    } else {
+      console.warn("MONGO_URI not provided.");
+    }
   } catch (error) {
     console.error("MongoDB connection failed:", error.message);
-    process.exit(1);
   }
 }
 
